@@ -2,7 +2,7 @@
 
 ![Build](https://github.com/ptavares/ansible-ubuntu/workflows/Build/badge.svg?branch=master)
 
-This project contains my personal Ansible playbooks to setup my Ubunty Computer computer :computer:
+This project contains my personal Ansible playbooks to setup my Ubunty :computer:
 
 ## Prerequisite
 
