@@ -1,0 +1,4 @@
+---
+vim_install_conf: true
+vim_install_color: true
+vim_install_plugins: true

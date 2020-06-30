@@ -1,0 +1,56 @@
+---
+name: Build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check docker version
+      run: docker version
+    - name: Build Docker image
+      run: |
+        make build-docker-image
+        docker images
+    - name: Start Docker container
+      run: docker run --name ansible-test -d -w /home/ubuntu/app/ ansible-ubuntu:test
+    - name: Display ansible version
+      run: docker exec -t ansible-test ansible --version
+    - name: install-roles
+      run: |
+        docker exec -t ansible-test make install-roles F=1
+        docker exec -t ansible-test ls -l roles_imported|tail -n +2 | wc -l
+    - name: Install kubectl
+      run: |
+        docker exec -t ansible-test make kubectl args="-e ansible_become_pass=ubuntu"
+        docker exec -t ansible-test kubectl version | grep Client | cut -d '"' -f 6
+    - name: Install vscode
+      run: |
+        docker exec -t ansible-test make vscode args="-e ansible_become_pass=ubuntu"
+        docker exec -t ansible-test code -v
+    - name: Install docker
+      run: |
+        docker exec -t ansible-test make docker args="-e ansible_become_pass=ubuntu"
+        docker exec -t ansible-test docker --version
+        docker exec -t ansible-test docker-compose -v
+    - name: Install tmux
+      run: |
+        docker exec -t ansible-test make tmux args="-e ansible_become_pass=ubuntu"
+        docker exec -t ansible-test tmux -V
+        docker exec -t ansible-test tmuxinator -v
+    - name: Install zsh
+      run: |
+        docker exec -t ansible-test make zsh args="-e ansible_become_pass=ubuntu"
+        docker exec -t ansible-test zsh --version
+    - name: Install vim
+      run: |
+        docker exec -t ansible-test make vim args="-e ansible_become_pass=ubuntu"
+        docker exec -t ansible-test vim --version
+    - name: Install fonts
+      run: |
+        docker exec -t ansible-test make fonts args="-e ansible_become_pass=ubuntu"
+        docker exec -t ansible-test /home/ubuntu/nerd-fonts/install.sh -v
+        docker exec -t ansible-test /home/ubuntu/nerd-fonts/install.sh -L
+    - name: Install gnome-shell-extension
+      run: |
+        docker exec -t ansible-test make gnome-shell-extension args="-e ansible_become_pass=ubuntu"

@@ -1,0 +1,20 @@
+---
+- name: "Ansible Playbook to install zsh for user {{ ansible_user }}"
+  hosts: computer
+  gather_facts: true
+
+  # Laptop vars
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+    system_packages_remove:
+    system_deb_urls:
+    system_clean:
+    system_update: true
+    system_packages_install:
+      - "{{ ['tmux'] +  minimal_system_packages + git_packages + compress_packages }}"
+
+  roles:
+      # Use this role to ensure system update before installing zsh
+      - ptavares.ansible_role_manage_system
+      # Install zsh
+      - ptavares.ansible_role_oh_my_zsh

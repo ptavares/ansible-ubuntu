@@ -1,0 +1,19 @@
+---
+##################################
+# Check requirements before insall
+##################################
+- name: Set Common Required Package
+  set_fact:
+    packages:
+      - git
+      - gnome-shell
+      - curl
+      - dbus
+      - perl
+      - less
+
+- name: Ensure dependancies presence's
+  package:
+    name: "{{ packages }}"
+    state: present
+  become: true

@@ -1,0 +1,26 @@
+---
+users:
+  - username: "{{ ansible_user }}"
+    visual_studio_code_extensions:
+      - azemoh.one-monokai
+      - vscoss.vscode-ansible
+      - chef-software.chef
+      - ms-azuretools.vscode-docker
+      - eamodio.gitlens
+      - golang.go
+      - naco-siren.gradle-language
+      - wholroyd.hcl
+      - github.vscode-pull-request-github
+      - qezhu.gitlink
+      - ivory-lab.jenkinsfile-support
+      - eriklynd.json-tools
+      - heptio.jsonnet
+      - ms-kubernetes-tools.vscode-kubernetes-tools
+      - ipedrazas.kubernetes-snippets
+      - DavidAnson.vscode-markdownlint
+      - ibm.output-colorizer
+      - puppet.puppet-vscode
+      - HashiCorp.terraform
+      - bbenoist.vagrant
+      - marcostazi.vs-code-vagrantfile
+      - redhat.vscode-yaml

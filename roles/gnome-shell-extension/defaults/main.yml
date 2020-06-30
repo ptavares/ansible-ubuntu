@@ -1,0 +1,8 @@
+---
+# if not specified, download last version
+#shell_extension_version: v1.6.2
+shell_extension_url: https://github.com/brunelli/gnome-shell-extension-installer/releases/download/{{ shell_extension_version }}/gnome-shell-extension-installer
+shell_extension_reinstall: false
+shell_extension_execution_path: /usr/local/bin
+shell_extension_execution_file_name: gnome-shell-extension-installer
+shell_extension_items:

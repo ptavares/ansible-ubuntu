@@ -1,0 +1,19 @@
+---
+- name: "Ansible Playbook to install Gnome Shell Extension for user {{ ansible_user }}"
+  hosts: computer
+  gather_facts: true
+
+  # Laptop vars
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+    system_packages_remove:
+    system_deb_urls:
+    system_clean:
+    system_update: true
+    system_packages_install: "{{ git_packages + minimal_system_packages }}"
+
+  roles:
+      # Use this role to ensure system update before installing zsh
+      - ptavares.ansible_role_manage_system
+      # Install fonts
+      - gnome-shell-extension

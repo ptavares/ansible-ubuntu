@@ -1,0 +1,5 @@
+---
+### Docker : no version specified -> install last version
+### Install docker-compose to last version too
+docker_users:
+    - "{{ ansible_user }}"

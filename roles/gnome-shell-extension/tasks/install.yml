@@ -1,0 +1,40 @@
+---
+
+# Check if gnome-shell-extension-installer
+- name: Check for gnome-shell-extension-installer command
+  shell: command -v gnome-shell-extension-installer >/dev/null 2>&1
+  register: is_shell_extension_installer_exist
+  ignore_errors: yes
+
+# Check if gnome-shell-extension-installer must be installed
+- set_fact:
+    install: false
+
+- set_fact:
+    install: true
+  when: is_shell_extension_installer_exist.rc != 0 or shell_extension_reinstall
+
+# Download specified version
+- name: "Download specifed gnome-shell-extension-installer {{ shell_extension_version }}"
+  get_url:
+    url: "{{ shell_extension_url }}"
+    dest: "{{ shell_extension_execution_path }}"
+    mode: u+x,g+x,o+x
+  become: true
+  when : install and shell_extension_version is defined
+
+# Install last version
+- name: Retrieve last version
+  shell: "curl https://api.github.com/repos/brunelli/gnome-shell-extension-installer/releases | grep browser_download_url | head -n 1 | cut -d '\"'  -f 4"
+  args:
+    warn: False
+  register: last_shell_extension_url
+
+- name: Install last gnome-shell-extension-installer
+  get_url:
+    url: "{{ last_shell_extension_url.stdout }}"
+    dest: "{{ shell_extension_execution_path }}"
+    mode: u+x,g+x,o+x
+  become: true 
+  when : install and shell_extension_version is undefined
+

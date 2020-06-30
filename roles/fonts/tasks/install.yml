@@ -1,0 +1,19 @@
+---
+
+- name: Check if Nerd Fonts repo was already cloned in {{ home_dir }}/nerd-fonts
+  stat:
+    path: "{{ home_dir }}/nerd-fonts"
+  register: nerd_fonts_repo_check
+
+- name: Clone Nerd Fonts repo in {{ home_dir }}/nerd-fonts (https://github.com/ryanoasis/nerd-fonts)
+  git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    version: master
+    depth: "1"
+    dest: "{{ home_dir }}/nerd-fonts"
+    update: yes
+  when: not nerd_fonts_repo_check.stat.exists
+
+- name: "Nerd Fonts instruction"
+  debug:
+    msg: "Install the fonts manually. E.g. run `source {{ home_dir }}/nerd-fonts/install.sh JetBrainsMono`"

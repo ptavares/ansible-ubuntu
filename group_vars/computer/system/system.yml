@@ -1,0 +1,72 @@
+---
+
+##################
+# System
+##################
+system_update: true
+system_update_security_only: false
+
+minimal_system_packages:
+  - bash
+  - grep
+  - less
+  - make
+  - wget
+  - curl
+
+build_packges:
+  - apt-utils
+  - build-essential
+  - gcc
+
+git_packages:
+  - git
+  - tig
+
+network_packages:
+  - nmap
+  - rsync
+  - traceroute
+  - net-tools
+  - whois
+  - ipcalc
+
+tools_packges:
+  - htop
+  - dos2unix
+  - jq
+  - pwgen
+  - oathtoll
+  - shellcheck
+  - gomplate
+
+compress_packages:
+  - zip
+  - unzip
+  - p7zip-full
+  - p7zip-rar
+
+gnome_packages:
+  - gnome-shell
+  - gnome-shell-extensions
+  - gnome-tweak-tool
+  - ubuntu-restricted-extras
+  # -------------------------------------------------
+  # Package for system-monitor gnome shell extension
+  # -------------------------------------------------
+  - chrome-gnome-shell
+  - gir1.2-gtop-2.0
+  - gir1.2-nm-1.0
+  - gir1.2-clutter-1.0
+
+system_packages_install: "{{ minimal_system_packages + build_packges + git_packages +\
+                             network_packages + tools_packges + compress_packages + gnome_packages }}"
+
+system_packages_remove:
+  - light-locker
+  - nano
+
+system_deb_urls:
+  - "https://prerelease.keybase.io/keybase_amd64.deb"
+
+system_clean: true

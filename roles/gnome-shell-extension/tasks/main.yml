@@ -1,0 +1,24 @@
+---
+# tasks file for shell-extension
+
+# Check requirement before installation
+- include: check-requirements.yml
+  tags:
+    - shell-extension-all
+    - shell-extension-requirements
+
+# Install binarie
+- include: install.yml
+  tags:
+    - shell-extension-all
+    - shell-extension-install
+    - shell-extension-update
+
+# Install extensions
+- include: install-extension.yml
+  tags:
+    - shell-extension-all
+    - shell-extension-install
+    - shell-extension-update
+    - shell-extension-update-extension
+  when : shell_extension_items is defined

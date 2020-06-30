@@ -1,0 +1,14 @@
+---
+# tasks file for fonts
+
+# Check requirement before installation
+- include: check-requirements.yml
+  tags:
+    - fonts-install-all
+    - fonts-install-requirements
+
+# Install fonts
+- include: install.yml
+  tags:
+    - fonts-install-all
+    - fonts-install-repo

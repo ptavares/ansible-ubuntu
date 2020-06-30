@@ -1,0 +1,11 @@
+---
+- name: "Ansible Playbook to manage system packages/deb for user {{ ansible_user }}"
+  hosts: computer
+  gather_facts: true
+
+  # Laptop vars
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+
+  roles:
+      - ptavares.ansible_role_manage_system

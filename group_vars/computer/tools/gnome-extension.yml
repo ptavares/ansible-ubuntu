@@ -1,0 +1,10 @@
+---
+
+## Shell Extension install
+shell_extension_items:
+   - {name : "Alternate Tab" , id: 15, shell_version: "" }
+   - {name : "System Monitor" , id: 120, shell_version: "" }
+   - {name : "Dash to Dock" , id: 307, shell_version: "" }
+   - {name : "Workspace Isolate Dash" , id: 887, shell_version: "" }
+   - {name : "Workspace Grid" , id: 484, shell_version: "" }
+   - {name : "Workspace Indicator" , id: 21, shell_version: "" }

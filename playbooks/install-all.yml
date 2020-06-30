@@ -1,0 +1,19 @@
+---
+- name: "Ansible Playbook to setup fresh install for user {{ ansible_user }}"
+  hosts: computer
+  gather_facts: true
+
+  # Laptop vars
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+
+  roles:
+    - { name: ptavares.ansible_role_manage_system, tags: [system, init] }
+    - { name: fonts, tags: [ extra, fonts ] }
+    - { name: vim, tags: [tools, editor, vim] }
+    - { name: tmux, tags: [tools, bash, tmux] }
+    - { name: ptavares.ansible_role_docker, tags: [tools, docker] }
+    - { name: ptavares.ansible_role_kubectl, tags: [tools, kubectl] }
+    - { name: ptavares.ansible_role_oh_my_zsh, tags: [tools, bash, zsh] }
+    - { name: gantsign.visual-studio-code, tags: [tools, editor, vsc] }
+    - { name: shell-extension, tags: [tools, system, shell-extension] }

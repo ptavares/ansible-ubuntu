@@ -1,0 +1,13 @@
+##################################
+# Check requirements before insall
+##################################
+- name: Set Common Required Package
+  set_fact:
+    packages:
+      - git
+
+- name: Ensure common dependancies presence's
+  package:
+    name: "{{ packages }}"
+    state: present
+  become: true

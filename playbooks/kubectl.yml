@@ -1,0 +1,18 @@
+---
+- name: "Ansible Playbook to install Kubectl for user {{ ansible_user }}"
+  hosts: computer
+  gather_facts: true
+
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+    system_packages_remove:
+    system_deb_urls:
+    system_clean:
+    system_update: true
+    system_packages_install:
+
+  roles:
+      # Use this role to ensure system update before installing zsh
+      - ptavares.ansible_role_manage_system
+      # Install kubectl
+      - ptavares.ansible_role_kubectl
