@@ -50,8 +50,6 @@ oh_my_zsh_custom_plugins_command :
 
 oh_my_zsh_custom_zsh_entries:
   - "export EDITOR=vim"
-  - "# List only directories alias"
-  - "alias lsd='ls -l | grep \"^d\"'"
   - "# List by size directories"
   - "alias ducks='du -cksh * | sort -hr | head -n 15'"
   - "# File Shortcuts"
