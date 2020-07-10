@@ -20,23 +20,29 @@ oh_my_zsh_custom_plugins_info:
   - { url: "https://github.com/Treri/fzf-zsh.git", dir_dest_name: fzf-zsh }
   - { url: "https://github.com/zsh-users/zsh-autosuggestions.git", dir_dest_name: zsh-autosuggestions }
   - { url: "https://github.com/zdharma/fast-syntax-highlighting.git", dir_dest_name: fast-syntax-highlighting }
+  - { url: "https://github.com/ptavares/zsh-custom-functions.git", dir_dest_name: zsh-custom-functions }
   - { url: "https://github.com/ptavares/zsh-tfenv.git", dir_dest_name: zsh-tfenv }
   - { url: "https://github.com/ptavares/zsh-tgenv.git", dir_dest_name: zsh-tgenv }
   - { url: "https://github.com/ptavares/zsh-pkenv.git", dir_dest_name: zsh-pkenv }
   - { url: "https://github.com/ptavares/zsh-direnv.git", dir_dest_name: zsh-direnv }
   - { url: "https://github.com/ptavares/zsh-kubectx.git", dir_dest_name: zsh-kubectx }
   - { url: "https://github.com/ptavares/zsh-sdkman.git", dir_dest_name: zsh-sdkman }
+  - { url: "https://github.com/ptavares/zsh-exa.git", dir_dest_name: zsh-exa }
+  - { url: "https://github.com/ptavares/zsh-auto-update-plugins.git", dir_dest_name: zsh-auto-update-plugins }
 
 oh_my_zsh_custom_plugins:
   - fzf-zsh
   - zsh-autosuggestions
   - fast-syntax-highlighting
+  - zsh-custom-functions
   - zsh-tfenv
   - zsh-tgenv
   - zsh-pkenv
   - zsh-direnv
   - zsh-kubectx
   - zsh-sdkman
+  - zsh-exa
+  - zsh-auto-update-plugins
 
 oh_my_zsh_custom_plugins_command :
   - "$HOME/.oh-my-zsh/custom/plugins/fzf/install --all"
