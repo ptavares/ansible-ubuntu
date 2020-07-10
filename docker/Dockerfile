@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yq &&\
   apt-get install sudo make curl -yq &&\
-  apt-get install -y software-properties-common apt-utils python3-setuptools python3-apt python3-pip && \
+  apt-get install -y software-properties-common apt-utils python3-setuptools python3-apt python3-pip libx11-xcb1 && \
   # cleanup
   apt-get clean && \
   rm -rf \
