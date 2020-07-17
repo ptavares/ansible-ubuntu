@@ -1,6 +1,7 @@
 # ansible-ubuntu
 
 ![Build](https://github.com/ptavares/ansible-ubuntu/workflows/Build/badge.svg?branch=master)
+![GitHub](https://img.shields.io/github/license/ptavares/ansible-ubuntu)
 
 This project contains my personal Ansible playbooks to setup my Ubunty :computer:
 
