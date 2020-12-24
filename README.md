@@ -164,11 +164,11 @@ playbooks/install-all.yml
 Will install  `docker` and `docker-compose`.
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
-    * [ansible-role-docker](https://github.com/ptavares/ansible-role-docker)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-docker](https://github.com/ptavares/ansible-role-docker)
 
 * Local configuration file
-    * [docker.yml](./group_vars/computer/tools/docker.yml)
+  * [docker.yml](./group_vars/computer/tools/docker.yml)
 
 * Makefile targets
 
@@ -179,59 +179,62 @@ Will install  `docker` and `docker-compose`.
 
 #### fonts playbook
 
-Will clone [nerd-fonts](https://github.com/ryanoasis/nerd-fonts) into your `${HOME}` directory.
+Will clone [nerd-fonts](https://github.com/ryanoasis/nerd-fonts) into your `${HOME}/tools` directory.
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
 
 * Local configuration file
-    * none
+  * none
 
 * Makefile target
-    * After cloning [nerd-fonts](https://github.com/ryanoasis/nerd-fonts), run installation of this fonts :
-        * JetBrainsMono
-        * Mononoki
-        * DroidSansMono
-        * ProFont
-        * UbuntuMono
-        * SourceCodePro
-        * RobotoMono
+  * After cloning [nerd-fonts](https://github.com/ryanoasis/nerd-fonts), run installation of this fonts :
+    * JetBrainsMono
+    * Mononoki
+    * DroidSansMono
+    * ProFont
+    * UbuntuMono
+    * SourceCodePro
+    * RobotoMono
     >
     ```shell script
     make fonts
     ```
+
 #### kubectl playbook
 
 Will install `kubectl` CLI
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
-    * [ansible-role-kubectl](https://github.com/ptavares/ansible-role-kubectl)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-kubectl](https://github.com/ptavares/ansible-role-kubectl)
 
 * Local configuration file
-    * none (but you can specify one)
+  * none (but you can specify one)
 
 * Makefile targets (can be called for updates too)
 
     ```shell script
     make kubectl
-    ```
+   ```
+
 #### tmux playbook
 
 Will install `tmux` and `tmuxinator` with my custom tmux configuration files if wanted.
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
 
 * Local configuration file
-    * [tmux.yml](./group_vars/computer/tools/tmux.yml)
+  * [tmux.yml](./group_vars/computer/tools/tmux.yml)
 
 * Makefile targets
 
     ```shell script
     make tmux
     ```
-`tmux` configuration file is based on this [one](https://github.com/gpakosz/.tmux) and needs :
+
+`tmux` configuration file is based on this [one](https://github.com/gpakosz/.tmux) and needs extra plugins :
 
 * [tpm](https://github.com/tmux-plugins/tpm)
 * [tmux-sensible](https://github.com/tmux-plugins/tmux-sensible)
@@ -246,10 +249,10 @@ Will install `tmux` and `tmuxinator` with my custom tmux configuration files if 
 Will install `vim` with my custom vim configuration file if wanted.
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
 
 * Local configuration file
-    * [vim.yml](./group_vars/computer/tools/vim.yml)
+  * [vim.yml](./group_vars/computer/tools/vim.yml)
 
 * Makefile targets
 
@@ -258,6 +261,7 @@ Will install `vim` with my custom vim configuration file if wanted.
     # Makefle target will call this command line :
     # > vim +PlugInstall +qall
     ```
+
 `vim` configuration will install [molokai](https://github.com/tomasr/molokai.git) color theme and my custom plugins from [vim bootstrap](https://vim-bootstrap.com/)
 
 #### vscode playbook
@@ -265,10 +269,10 @@ Will install `vim` with my custom vim configuration file if wanted.
 Will install `vscode` and some plugins (see configuration file for details)
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
 
 * Local configuration file
-    * [vscode.yml](./group_vars/computer/tools/vscode.yml)
+  * [vscode.yml](./group_vars/computer/tools/vscode.yml)
 
 * Makefile targets
 
@@ -281,11 +285,11 @@ Will install `vscode` and some plugins (see configuration file for details)
 Will install `zsh` with [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and some useful plugins (see configuration file for details)
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
-    * [ansible-role-oh-my-zsh](https://github.com/ptavares/ansible-role-oh-my-zsh)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-oh-my-zsh](https://github.com/ptavares/ansible-role-oh-my-zsh)
 
 * Local configuration file
-    * [zsh.yml](./group_vars/computer/system/zsh.yml)
+  * [zsh.yml](./group_vars/computer/system/zsh.yml)
 
 * Makefile targets
 
@@ -299,10 +303,10 @@ Will install `zsh` with [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and some
 Will manage system updates and package/deb install/remove.
 
 * Dependencies
-    * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
 
 * Local configuration file
-    * [system.yml](./group_vars/computer/system/system.yml)
+  * [system.yml](./group_vars/computer/system/system.yml)
 
 * Makefile targets
 
