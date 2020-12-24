@@ -5,6 +5,9 @@
   set_fact:
     packages:
       - git
+      - perl
+      - sed
+    cacheable: false
 
 - name: Ensure common dependancies presence's
   package:

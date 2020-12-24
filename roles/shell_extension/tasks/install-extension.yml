@@ -1,0 +1,15 @@
+---
+##########################################
+# Install gnome's shell wanted extensions
+##########################################
+
+- name: "Install shell extension {{ item.name }}"
+  command: "{{ shell_extension_execution_file_name }} {{ item.id }} {{ item.shell_version }}"
+  with_items:
+    - "{{ shell_extension_items }}"
+  when: shell_extension_items is defined and shell_extension_items is not none
+  changed_when: True
+
+- name: "Restart Shell"
+  command: "{{ shell_extension_execution_file_name }} --restart-shell"
+  changed_when: True

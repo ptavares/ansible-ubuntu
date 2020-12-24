@@ -34,7 +34,7 @@ SUCCESS      = @echo "${LIGHTPURPLE}▶${GREEN} $1${RESET}"
 # ========================================
 INVENTORY            = inventory
 PLAYBOOK_DIR         = playbooks
-DEFAULT_REQUIREMENTS = ansible_requirements.yml
+DEFAULT_REQUIREMENTS = requirements/requirements_ansible.yml
 
 # ========================================
 # SETUP VARS
@@ -82,14 +82,13 @@ GALAXY=ansible-galaxy install -r $(requirements) $(force)
 .bootstrap-before-script:
 	@$(call MESSAGE, "Ensure "$$HOME/.local/bin" is part of PATH")
 	@bash scripts/00-fix-path.sh
-
-	@$(call MESSAGE, "Source folder \(to ensure initial setup loads this file\)")
-	@. /etc/profile
+	@$(call MESSAGE, "Source folder - ensure initial setup loads this file")
+	@. ~/.profile
 
 .PHONY: .bootstrap-before-install
 # == Install minimal Apt Dependencies (remove ansible if already)
 .bootstrap-before-install:
-	$(call MESSAGE,  "Minimal Apt Dependencies \(removes apt ansible if exist\)")
+	$(call MESSAGE, "Minimal Apt Dependencies \(removes apt ansible if exist\)")
 	@bash scripts/01-setup.sh
 
 .PHONY: .bootstrap-install
@@ -121,7 +120,7 @@ install-roles:
 ## Call ansible manage-system playbook
 ##
 manage-system: playbook ?= playbooks/manage-system.yml
-manage-system: install-roles
+manage-system: .bootstrap-before-script install-roles
 manage-system:
 	@$(ANSIBLE)
 
@@ -129,7 +128,7 @@ manage-system:
 ## Call ansible vscode playbook
 ##
 vscode: playbook ?= playbooks/vscode.yml
-vscode: install-roles
+vscode: .bootstrap-before-script install-roles
 vscode:
 	@$(ANSIBLE)
 
@@ -137,7 +136,7 @@ vscode:
 ## Call ansible kubectl playbook
 ##
 kubectl: playbook ?= playbooks/kubectl.yml
-kubectl: install-roles
+kubectl: .bootstrap-before-script install-roles
 kubectl:
 	$(ANSIBLE)
 
@@ -145,7 +144,7 @@ kubectl:
 ## Call ansible docker playbook
 ##
 docker: playbook ?= playbooks/docker.yml
-docker: install-roles
+docker: .bootstrap-before-script install-roles
 docker:
 	@$(ANSIBLE)
 
@@ -153,29 +152,30 @@ docker:
 ## Call ansible fonts playbook
 ##
 fonts: playbook ?= playbooks/fonts.yml
-fonts: install-roles
+fonts: .bootstrap-before-script install-roles
 fonts:
+	@mkdir -p $${HOME}/tools
 	@$(ANSIBLE)
 	$(call MESSAGE,  "Install JetBrainsMono font...")
-	@source $${HOME}/nerd-fonts/install.sh JetBrainsMono
+	@source $${HOME}/tools/nerd-fonts/install.sh JetBrainsMono
 	$(call MESSAGE,  "Install Mononoki font...")
-	@source $${HOME}/nerd-fonts/install.sh Mononoki
+	@source $${HOME}/tools/nerd-fonts/install.sh Mononoki
 	$(call MESSAGE,  "Install DroidSansMono font...")
-	@source $${HOME}/nerd-fonts/install.sh DroidSansMono
+	@source $${HOME}/tools/nerd-fonts/install.sh DroidSansMono
 	$(call MESSAGE,  "Install ProFont font...")
-	@source $${HOME}/nerd-fonts/install.sh ProFont
+	@source $${HOME}/tools/nerd-fonts/install.sh ProFont
 	$(call MESSAGE,  "Install UbuntuMono font...")
-	@source $${HOME}/nerd-fonts/install.sh UbuntuMono
+	@source $${HOME}/tools/nerd-fonts/install.sh UbuntuMono
 	$(call MESSAGE,  "Install SourceCodePro font...")
-	@source $${HOME}/nerd-fonts/install.sh SourceCodePro
+	@source $${HOME}/tools/nerd-fonts/install.sh SourceCodePro
 	$(call MESSAGE,  "Install RobotoMono font...")
-	@source $${HOME}/nerd-fonts/install.sh RobotoMono
+	@source $${HOME}/tools/nerd-fonts/install.sh RobotoMono
 
 .PHONY: gnome-shell-extension
 ## Call ansible gnome-shell-extension playbook
 ##
 gnome-shell-extension: playbook ?= playbooks/gnome-extension.yml
-gnome-shell-extension: install-roles
+gnome-shell-extension: .bootstrap-before-script install-roles
 gnome-shell-extension:
 	@$(ANSIBLE)
 
@@ -183,7 +183,7 @@ gnome-shell-extension:
 ## Call ansible vim playbook
 ##
 vim: playbook ?= playbooks/vim.yml
-vim: install-roles
+vim: .bootstrap-before-script install-roles
 vim:
 	@$(ANSIBLE)
 	$(call MESSAGE,  "Install all vim plugins...")
@@ -193,14 +193,14 @@ vim:
 ## Call ansible tmux playbook
 ##
 tmux: playbook ?= playbooks/tmux.yml
-tmux: install-roles
+tmux:.bootstrap-before-script   install-roles
 tmux:
 	@$(ANSIBLE)
 
 .PHONY: zsh
 ## Call ansible zsh playbook
 zsh: playbook ?= playbooks/zsh.yml
-zsh: install-roles
+zsh: .bootstrap-before-script install-roles
 zsh:
 	@$(ANSIBLE)
 
@@ -212,7 +212,7 @@ zsh:
 ##
 update-zsh-config: playbook ?= playbooks/zsh.yml
 update-zsh-config: tags ?= "zsh-install-compose"
-update-zsh-config: install-roles
+update-zsh-config:.bootstrap-before-script install-roles
 update-zsh-config:
 	@$(ANSIBLE)
 
@@ -221,7 +221,7 @@ update-zsh-config:
 ##
 update-manage-system: playbook ?= playbooks/manage-system.yml
 update-manage-system: tags ?= "manage-system-update, manage-system-clean"
-update-manage-system: install-roles
+update-manage-system:.bootstrap-before-script install-roles
 update-manage-system:
 	@$(ANSIBLE)
 
@@ -229,7 +229,7 @@ update-manage-system:
 ## Call ansible docker playbook with tags="docker-install-compose"
 update-docker-compose: playbook ?= playbooks/docker.yml
 update-docker-compose: tags ?= "docker-install-compose"
-update-docker-compose: install-roles
+update-docker-compose:.bootstrap-before-script install-roles
 update-docker-compose:
 	@$(ANSIBLE)
 
@@ -242,7 +242,7 @@ update-docker-compose:
 ##
 bootstrap-check: .bootstrap-before-script
 	$(call MESSAGE, "Check that PATH and requirements are correct")
-	ansible --version | grep "python version"
+	@ansible --version
 
 .PHONY: build-docker-image
 ## Build Docker images to test ansible playbooks
@@ -261,6 +261,7 @@ build-docker-image:
 # =================================================
 .PHONY: clean
 ## Clean directory
+##
 clean:
 	$(call MESSAGE, "Remove imported roles...")
 	@rm -Rf roles_imported/
@@ -268,6 +269,12 @@ clean:
 # =================================================
 ## ############## Help ##############
 # =================================================
+PHONY: precommit
+## run precommit on all files
+##
+precommit:
+	pre-commit run --all-files
+
 .PHONY: run-playbook
 ## Usage                : make run-playbook playbook=<playbook> tags=<tags> limits=<limits> args=<args>
 ## Required args :

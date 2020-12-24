@@ -15,5 +15,5 @@
   roles:
       # Use this role to ensure system update before installing zsh
       - ptavares.ansible_role_manage_system
-      # Install fonts
-      - gnome-shell-extension
+      # Install shell extension
+      - shell_extension

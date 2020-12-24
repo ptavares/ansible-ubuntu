@@ -28,6 +28,7 @@ oh_my_zsh_custom_plugins_info:
   - { url: "https://github.com/ptavares/zsh-kubectx.git", dir_dest_name: zsh-kubectx }
   - { url: "https://github.com/ptavares/zsh-sdkman.git", dir_dest_name: zsh-sdkman }
   - { url: "https://github.com/ptavares/zsh-exa.git", dir_dest_name: zsh-exa }
+  - { url: "https://github.com/ptavares/zsh-z.git", dir_dest_name: zsh-z }
   - { url: "https://github.com/ptavares/zsh-auto-update-plugins.git", dir_dest_name: zsh-auto-update-plugins }
 
 oh_my_zsh_custom_plugins:
@@ -42,6 +43,7 @@ oh_my_zsh_custom_plugins:
   - zsh-kubectx
   - zsh-sdkman
   - zsh-exa
+  - zsh-z
   - zsh-auto-update-plugins
 
 oh_my_zsh_custom_plugins_command :
@@ -50,14 +52,11 @@ oh_my_zsh_custom_plugins_command :
 
 oh_my_zsh_custom_zsh_entries:
   - "export EDITOR=vim"
-  - "# List by size directories"
-  - "alias ducks='du -cksh * | sort -hr | head -n 15'"
   - "# File Shortcuts"
   - "alias D='cd ~/Téléchargements'"
-  - "alias p='cd ~/projects'"
+  - "alias P='cd ~/projects'"
   - "alias T='cd ~/tools'"
   - "# Program Shortcuts"
-  - "alias gitStoreCredentials='git config credential.helper store'"
   - "alias vi='vim -O'"
   - "# AWS login"
   - "alias logIntoIpponAWS='aws-google-auth -p ippon-admin-aws -d 28800 -I C00lefphs -S 563310275444 -r arn:aws:iam::308846910468:role/role-admin-sre-ops-federated -u ptavares@ippon.fr'"

@@ -16,4 +16,4 @@
     - { name: ptavares.ansible_role_kubectl, tags: [tools, kubectl] }
     - { name: ptavares.ansible_role_oh_my_zsh, tags: [tools, bash, zsh] }
     - { name: gantsign.visual-studio-code, tags: [tools, editor, vsc] }
-    - { name: shell-extension, tags: [tools, system, shell-extension] }
+    - { name: shell_extension, tags: [tools, system, shell-extension] }

@@ -26,4 +26,4 @@ mkdir -p "$FOLDER"
 #########################################
 python3 -m pip install --user --upgrade pip
 python3 -m pip install --user --upgrade setuptools
-python3 -m pip install --user ansible
+python3 -m pip install --user -r requirements/requirements_pip.txt

@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ENV DEBIAN_FRONTEND=noninteractive 
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yq &&\
   apt-get install sudo make curl -yq &&\

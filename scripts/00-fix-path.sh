@@ -14,7 +14,7 @@ fi
 SCRIPT_LOCAL_BIN_2_PATH=00-add-local-bin-to-path.sh
 
 if test -f "/etc/profile.d/${SCRIPT_LOCAL_BIN_2_PATH}"; then
-    #echo "${SCRIPT_LOCAL_BIN_2_PATH} already installed."
+    echo "${SCRIPT_LOCAL_BIN_2_PATH} already installed."
     exit 0
 fi
 

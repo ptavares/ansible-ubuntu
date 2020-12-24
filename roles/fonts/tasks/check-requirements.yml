@@ -5,6 +5,7 @@
   set_fact:
     packages:
       - git
+    cacheable: no
 
 - name: Ensure common dependancies presence's
   package:

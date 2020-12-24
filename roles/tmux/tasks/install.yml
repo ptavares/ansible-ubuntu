@@ -16,7 +16,7 @@
     dest: "{{ ansible_env.HOME }}/.tmux.conf"
     backup: yes
     owner: '{{ ansible_user }}'
-  when: tmux_install_conf is defined and tmux_install_conf
+    mode: u=rw,g=r,o=r
 
 - name: Copy custom .tmux.conf.local
   copy:
@@ -24,15 +24,14 @@
     dest: "{{ ansible_env.HOME }}/.tmux.conf.local"
     backup: yes
     owner: '{{ ansible_user }}'
-  when: tmux_install_conf is defined and tmux_install_conf
+    mode: u=rw,g=r,o=r
 
 - name: Checkout tmux-plugins-manager
   git:
     repo: https://github.com/tmux-plugins/tpm.git
     dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
-    version: master
+    version: v3.0.0
 
 - name: Post-install message
   debug:
     msg: "Install tmux plugins on first tmux's session with 'prefix + I'"
-  when: tmux_install_conf is defined and tmux_install_conf

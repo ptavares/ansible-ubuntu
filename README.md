@@ -9,7 +9,7 @@ This project contains my personal Ansible playbooks to setup my Ubunty :computer
 
 Ansible must be installed
 
-### Standard installation 
+### Standard installation
 
 #### From apt
 
@@ -32,7 +32,7 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
 ### Makefile installation
 
 ```shell script
-git clone https://github.com/ptavares/ansible-ubuntu.git &&\ 
+git clone https://github.com/ptavares/ansible-ubuntu.git &&\
 cd ansible-ubuntu &&\
 make bootstrap
 ```
@@ -43,7 +43,7 @@ make bootstrap
 Build the Docker image
 
 ```shell script
-git clone https://github.com/ptavares/ansible-ubuntu.git &&\ 
+git clone https://github.com/ptavares/ansible-ubuntu.git &&\
 cd ansible-ubuntu &&\
 make build-docker-image
 ```
@@ -71,13 +71,13 @@ All ansible playbooks calls are available from a Makefile target :
  / _` | ' \(_-< | '_ \ / -_)___| || | '_ \ || | ' \  _| || |
  \__,_|_||_/__/_|_.__/_\___|    \_,_|_.__/\_,_|_||_\__|\_,_|
 =============================================================
-Usage : 
+Usage :
         make [target] [arg1=val1] [arg2=val2]...
 
          ############## Setup ##############
 
 bootstrap                 Installs dependencies needed to run ansible playbooks
-                         
+
 install-roles             Install ansible role dependencies
                           Usage            : make install-roles [requirements=requirement.yml] [F=1]
                           Available args   :
@@ -87,33 +87,33 @@ install-roles             Install ansible role dependencies
          ############## Installation ##############
 
 manage-system             Call ansible manage-system playbook
-                         
+
 vscode                    Call ansible vscode playbook
-                         
+
 kubectl                   Call ansible kubectl playbook
-                         
+
 docker                    Call ansible docker playbook
-                         
+
 fonts                     Call ansible fonts playbook
-                         
+
 vim                       Call ansible vim playbook
-                         
+
 tmux                      Call ansible tmux playbook
-                         
+
 zsh                       Call ansible zsh playbook
 
          ############## Updates ##############
 
 update-zsh-config         Call ansible zsh playbook with tags="zsh-install-compose"
-                         
+
 update-manage-system      Call ansible manage-system playbook with tags="manage-system-update, manage-system-clean"
-                         
+
 update-docker-compose     Call ansible docker playbook with tags="docker-install-compose"
 
          ############## Test ##############
 
 bootstrap-check           Check that PATH and requirements are correct
-                         
+
 build-docker-image        Build Docker images to test ansible playbooks
 
          ############## Clean ##############
@@ -129,11 +129,11 @@ run-playbook              Usage                : make run-playbook playbook=<pla
                             - tags             : Specify a list of tags for your ansible run
                             - limits           : Limit the command to a subset of hosts with ansible's limit argument
                             - args             : Add ansible understandable arguments
-                         
+
 list-playbooks            List Playbooks
-                         
+
 help                      Show this help
-                         
+
 
 With default variables:
 -----------------------
@@ -157,19 +157,19 @@ playbooks/vim.yml
 playbooks/vscode.yml
 playbooks/zsh.yml
 playbooks/install-all.yml
-``` 
+```
 
 #### docker playbook
 
-Will install  `docker` and `docker-compose`. 
+Will install  `docker` and `docker-compose`.
 
 * Dependencies
     * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
     * [ansible-role-docker](https://github.com/ptavares/ansible-role-docker)
-    
+
 * Local configuration file
     * [docker.yml](./group_vars/computer/tools/docker.yml)
-    
+
 * Makefile targets
 
     ```shell script
@@ -183,10 +183,10 @@ Will clone [nerd-fonts](https://github.com/ryanoasis/nerd-fonts) into your `${HO
 
 * Dependencies
     * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
-    
+
 * Local configuration file
     * none
-  
+
 * Makefile target
     * After cloning [nerd-fonts](https://github.com/ryanoasis/nerd-fonts), run installation of this fonts :
         * JetBrainsMono
@@ -199,7 +199,7 @@ Will clone [nerd-fonts](https://github.com/ryanoasis/nerd-fonts) into your `${HO
     >
     ```shell script
     make fonts
-    ``` 
+    ```
 #### kubectl playbook
 
 Will install `kubectl` CLI
@@ -210,7 +210,7 @@ Will install `kubectl` CLI
 
 * Local configuration file
     * none (but you can specify one)
-    
+
 * Makefile targets (can be called for updates too)
 
     ```shell script
@@ -222,7 +222,7 @@ Will install `tmux` and `tmuxinator` with my custom tmux configuration files if 
 
 * Dependencies
     * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
-    
+
 * Local configuration file
     * [tmux.yml](./group_vars/computer/tools/tmux.yml)
 
@@ -247,15 +247,15 @@ Will install `vim` with my custom vim configuration file if wanted.
 
 * Dependencies
     * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
-    
+
 * Local configuration file
     * [vim.yml](./group_vars/computer/tools/vim.yml)
 
 * Makefile targets
-     
+
     ```shell script
     make vim
-    # Makefle target will call this command line : 
+    # Makefle target will call this command line :
     # > vim +PlugInstall +qall
     ```
 `vim` configuration will install [molokai](https://github.com/tomasr/molokai.git) color theme and my custom plugins from [vim bootstrap](https://vim-bootstrap.com/)
@@ -266,12 +266,12 @@ Will install `vscode` and some plugins (see configuration file for details)
 
 * Dependencies
     * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
-    
+
 * Local configuration file
     * [vscode.yml](./group_vars/computer/tools/vscode.yml)
-    
+
 * Makefile targets
-     
+
     ```shell script
     make vscode
     ```
@@ -283,12 +283,12 @@ Will install `zsh` with [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) and some
 * Dependencies
     * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
     * [ansible-role-oh-my-zsh](https://github.com/ptavares/ansible-role-oh-my-zsh)
-    
+
 * Local configuration file
     * [zsh.yml](./group_vars/computer/system/zsh.yml)
-    
+
 * Makefile targets
-     
+
     ```shell script
     make zsh
     make update-zsh-config
@@ -301,11 +301,11 @@ Will manage system updates and package/deb install/remove.
 * Dependencies
     * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
 
-* Local configuration file 
+* Local configuration file
     * [system.yml](./group_vars/computer/system/system.yml)
 
 * Makefile targets
-     
+
     ```shell script
     make manage-system
     make update-manage-system

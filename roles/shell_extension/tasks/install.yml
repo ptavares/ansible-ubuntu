@@ -5,12 +5,15 @@
   shell: command -v gnome-shell-extension-installer >/dev/null 2>&1
   register: is_shell_extension_installer_exist
   ignore_errors: yes
+  changed_when: False
 
 # Check if gnome-shell-extension-installer must be installed
-- set_fact:
+- name : Inut install variable
+  set_fact:
     install: false
 
-- set_fact:
+- name : Change install variable to true if shell_extension must be installed
+  set_fact:
     install: true
   when: is_shell_extension_installer_exist.rc != 0 or shell_extension_reinstall
 
@@ -25,16 +28,18 @@
 
 # Install last version
 - name: Retrieve last version
-  shell: "curl https://api.github.com/repos/brunelli/gnome-shell-extension-installer/releases | grep browser_download_url | head -n 1 | cut -d '\"'  -f 4"
+  shell: |
+    set -o pipefail
+    curl https://api.github.com/repos/brunelli/gnome-shell-extension-installer/releases | grep browser_download_url | head -n 1 | cut -d '\"'  -f 4
   args:
     warn: False
   register: last_shell_extension_url
+  changed_when: False
 
 - name: Install last gnome-shell-extension-installer
   get_url:
     url: "{{ last_shell_extension_url.stdout }}"
     dest: "{{ shell_extension_execution_path }}"
     mode: u+x,g+x,o+x
-  become: true 
+  become: true
   when : install and shell_extension_version is undefined
-

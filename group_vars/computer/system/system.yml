@@ -36,9 +36,8 @@ tools_packges:
   - dos2unix
   - jq
   - pwgen
-  - oathtoll
+  - oathtool
   - shellcheck
-  - gomplate
 
 compress_packages:
   - zip
