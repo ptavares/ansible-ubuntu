@@ -1,5 +1,0 @@
-- src: ptavares.ansible_role_manage_system
-- src: ptavares.ansible_role_oh_my_zsh
-- src: ptavares.ansible_role_docker
-- src: ptavares.ansible_role_kubectl
-- src: gantsign.visual-studio-code
