@@ -1,0 +1,22 @@
+---
+##################################
+# Check requirements before insall
+##################################
+- name: Set Common Required Package
+  set_fact:
+    packages:
+      - curl
+      - wget
+
+- name: Ensure dependancies presence's
+  package:
+    name: "{{ packages }}"
+    state: present
+  become: true
+
+- name: "Ensure destination directory exist {{ appimages_download_dir}}"
+  file:
+    path: "{{ appimages_download_dir}}"
+    state: directory
+    mode: 0775
+    recurse: yes

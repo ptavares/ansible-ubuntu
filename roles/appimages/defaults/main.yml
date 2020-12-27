@@ -1,0 +1,3 @@
+---
+appimages_download_dir: "{{ home_dir }}/tools/appimages"
+appimages_user_execution_path: /home/{{ ansible_user }}/.local/bin

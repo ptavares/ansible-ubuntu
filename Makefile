@@ -199,9 +199,17 @@ tmux:
 
 .PHONY: zsh
 ## Call ansible zsh playbook
+##
 zsh: playbook ?= playbooks/zsh.yml
 zsh: .bootstrap-before-script install-roles
 zsh:
+	@$(ANSIBLE)
+
+.PHONY: appimages
+## Call ansible appimages playbook
+appimages: playbook ?= playbooks/appimages.yml
+appimages: .bootstrap-before-script install-roles
+appimages:
 	@$(ANSIBLE)
 
 # =================================================

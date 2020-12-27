@@ -1,0 +1,18 @@
+---
+# tasks file for appimags
+
+# Check requirement before installation
+- include: check-requirements.yml
+  tags:
+    - appimages-all
+    - appimages-requirements
+
+# Install appimages
+- include: install.yml appimage={{ item }}
+  with_items:
+    - "{{ appimages_items }}"
+  when : appimages_items is defined
+  tags:
+    - appimages-all
+    - appimage-install
+    - appimage-update

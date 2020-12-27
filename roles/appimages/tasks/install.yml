@@ -1,0 +1,15 @@
+---
+
+# Download AppImages
+- name: "Download AppImages {{ appimage.name }}"
+  get_url:
+    url: "{{ appimage.url }}"
+    dest: "{{ appimages_download_dir }}/{{ appimage.name }}"
+    mode: u+x,g+x,o+x
+
+# Install AppImages
+- name: "Create symlink to {{ appimages_user_execution_path }}"
+  file:
+   src: "{{ appimages_download_dir }}/{{ appimage.name }}"
+   dest: "{{ appimages_user_execution_path }}/{{ appimage.name }}"
+   state: link
