@@ -37,7 +37,6 @@ cd ansible-ubuntu &&\
 make bootstrap
 ```
 
-
 ## Test with Docker
 
 Build the Docker image
