@@ -71,73 +71,80 @@ All ansible playbooks calls are available from a Makefile target :
  / _` | ' \(_-< | '_ \ / -_)___| || | '_ \ || | ' \  _| || |
  \__,_|_||_/__/_|_.__/_\___|    \_,_|_.__/\_,_|_||_\__|\_,_|
 =============================================================
-Usage :
+Usage : 
         make [target] [arg1=val1] [arg2=val2]...
 
          ############## Setup ##############
 
-bootstrap                 Installs dependencies needed to run ansible playbooks
-
-install-roles             Install ansible role dependencies
-                          Usage            : make install-roles [requirements=requirement.yml] [F=1]
+bootstrap:                Installs dependencies needed to run ansible playbooks
+                         
+install-roles:            Install ansible role dependencies
+                          Usage            : make install-roles [requirements=requirement.yml] [F=1]
                           Available args   :
                             - requirements : specify custom requirements file, default set to $(DEFAULT_REQUIREMENTS)
                             - F            : set F=1 to force download if role already exist
 
          ############## Installation ##############
 
-manage-system             Call ansible manage-system playbook
-
-vscode                    Call ansible vscode playbook
-
-kubectl                   Call ansible kubectl playbook
-
-docker                    Call ansible docker playbook
-
-fonts                     Call ansible fonts playbook
-
-vim                       Call ansible vim playbook
-
-tmux                      Call ansible tmux playbook
-
-zsh                       Call ansible zsh playbook
+manage-system:            Call ansible manage-system playbook
+                         
+vscode:                   Call ansible vscode playbook
+                         
+kubectl:                  Call ansible kubectl playbook
+                         
+docker:                   Call ansible docker playbook
+                         
+fonts:                    Call ansible fonts playbook
+                         
+gnome-shell-extension:    Call ansible gnome-shell-extension playbook
+                         
+vim:                      Call ansible vim playbook
+                         
+tmux:                     Call ansible tmux playbook
+                         
+zsh:                      Call ansible zsh playbook
+                         
+appimages:                Call ansible appimages playbook
 
          ############## Updates ##############
 
-update-zsh-config         Call ansible zsh playbook with tags="zsh-install-compose"
-
-update-manage-system      Call ansible manage-system playbook with tags="manage-system-update, manage-system-clean"
-
-update-docker-compose     Call ansible docker playbook with tags="docker-install-compose"
+update-zsh-config:        Call ansible zsh playbook with tags="zsh-install-compose"
+                         
+update-manage-system:     Call ansible manage-system playbook with tags="manage-system-update, manage-system-clean"
+                         
+update-docker-compose:    Call ansible docker playbook with tags="docker-install-compose"
 
          ############## Test ##############
 
-bootstrap-check           Check that PATH and requirements are correct
-
-build-docker-image        Build Docker images to test ansible playbooks
+bootstrap-check:          Check that PATH and requirements are correct
+                         
+build-docker-image:       Build Docker images to test ansible playbooks
 
          ############## Clean ##############
 
-clean                     Clean directory
+clean:                    Clean directory
+                         
 
          ############## Help ##############
 
-run-playbook              Usage                : make run-playbook playbook=<playbook> tags=<tags> limits=<limits> args=<args>
+precommit:                run precommit on all files
+                         
+run-playbook:             Usage                : make run-playbook playbook=<playbook> tags=<tags> limits=<limits> args=<args>
                           Required args :
                             - playbook         : playbook to run
                           Available args:
                             - tags             : Specify a list of tags for your ansible run
                             - limits           : Limit the command to a subset of hosts with ansible's limit argument
                             - args             : Add ansible understandable arguments
-
-list-playbooks            List Playbooks
-
+                         
+list-playbooks:           List Playbooks
+                         
 help                      Show this help
-
+                         
 
 With default variables:
 -----------------------
-▶  DEFAULT_REQUIREMENTS = ansible_requirements.yml
+▶  DEFAULT_REQUIREMENTS = requirements/requirements_ansible.yml
 ▶  PLAYBOOK_DIR         = playbooks
 ```
 
@@ -148,15 +155,17 @@ With default variables:
 ```shell script
 > make list-playbooks
 
-playbooks/docker.yml
-playbooks/fonts.yml
-playbooks/kubectl.yml
-playbooks/manage-system.yml
-playbooks/tmux.yml
 playbooks/vim.yml
-playbooks/vscode.yml
-playbooks/zsh.yml
+playbooks/fonts.yml
+playbooks/manage-system.yml
+playbooks/docker.yml
 playbooks/install-all.yml
+playbooks/zsh.yml
+playbooks/kubectl.yml
+playbooks/vscode.yml
+playbooks/appimages.yml
+playbooks/gnome-extension.yml
+playbooks/tmux.yml
 ```
 
 #### docker playbook
@@ -196,7 +205,7 @@ Will clone [nerd-fonts](https://github.com/ryanoasis/nerd-fonts) into your `${HO
     * UbuntuMono
     * SourceCodePro
     * RobotoMono
-    >
+
     ```shell script
     make fonts
     ```
@@ -313,4 +322,36 @@ Will manage system updates and package/deb install/remove.
     ```shell script
     make manage-system
     make update-manage-system
+    ```
+
+#### gnome-extension playbook
+
+Will download and install some usefull gnome-shell-extension using [gnome-shell-extension-installer](https://github.com/brunelli/gnome-shell-extension-installer).
+
+* Dependencies
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+
+* Local configuration file
+  * [gnome-extensions.yml](./group_vars/computer/tools/gnome-extensions.yml)
+
+* Makefile targets
+
+    ```shell script
+    make gnome-shell-extension
+    ```
+
+#### AppImages playbook
+
+Will download and install AppImages.
+
+* Dependencies
+  * [ansible-role-manage-system](https://github.com/ptavares/ansible-role-manage-system)
+
+* Local configuration file
+  * [appimages.yml](./group_vars/computer/tools/appimages.yml)
+
+* Makefile targets
+
+    ```shell script
+    make appimages
     ```
