@@ -14,9 +14,9 @@
     state: present
   become: true
 
-- name: "Ensure destination directory exist {{ appimages_download_dir}}"
+- name: "Ensure destination directory exist {{ appimages_download_dir }}"
   file:
-    path: "{{ appimages_download_dir}}"
+    path: "{{ appimages_download_dir }}"
     state: directory
     mode: 0775
     recurse: yes
