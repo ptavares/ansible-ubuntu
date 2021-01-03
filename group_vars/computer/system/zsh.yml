@@ -30,6 +30,8 @@ oh_my_zsh_custom_plugins_info:
   - { url: "https://github.com/ptavares/zsh-exa.git", dir_dest_name: zsh-exa }
   - { url: "https://github.com/ptavares/zsh-z.git", dir_dest_name: zsh-z }
   - { url: "https://github.com/ptavares/zsh-auto-update-plugins.git", dir_dest_name: zsh-auto-update-plugins }
+  - { url: "https://github.com/b4b4r07/emoji-cli.git", dir_dest_name: emoji-cli }
+  
 
 oh_my_zsh_custom_plugins:
   - fzf-zsh
@@ -45,6 +47,7 @@ oh_my_zsh_custom_plugins:
   - zsh-exa
   - zsh-z
   - zsh-auto-update-plugins
+  - emoji-cli
 
 oh_my_zsh_custom_plugins_command :
   - "$HOME/.oh-my-zsh/custom/plugins/fzf/install --all"
