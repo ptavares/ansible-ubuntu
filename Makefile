@@ -112,9 +112,16 @@ install-roles: requirements ?= $(DEFAULT_REQUIREMENTS)
 install-roles:
 	@$(GALAXY)
 
-# =======================zsh:==========================
+# =================================================
 ## ############## Installation ##############
 # =================================================
+.PHONY: install-all
+## Call ansible install-all playbook (usefull for fresh laptop install)
+##
+install-all: playbook ?= playbooks/install-all.yml
+install-all: .bootstrap-before-script install-roles
+install-all:
+	@$(ANSIBLE)
 
 .PHONY: manage-system
 ## Call ansible manage-system playbook
@@ -211,6 +218,14 @@ appimages: playbook ?= playbooks/appimages.yml
 appimages: .bootstrap-before-script install-roles
 appimages:
 	@$(ANSIBLE)
+
+.PHONY: awscli
+## Call ansible awscliv2 playbook
+awscli: playbook ?= playbooks/awscliv2.yml
+awscli: .bootstrap-before-script install-roles
+awscli:
+	@$(ANSIBLE)
+
 
 # =================================================
 ## ############## Updates ##############

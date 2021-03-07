@@ -1,0 +1,15 @@
+---
+##################################
+# Check requirements before insall
+##################################
+- name: Set Common Required Package
+  set_fact:
+    packages:
+      - curl
+      - unzip
+
+- name: Ensure dependancies presence's
+  package:
+    name: "{{ packages }}"
+    state: present
+  become: true

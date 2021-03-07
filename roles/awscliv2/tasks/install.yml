@@ -1,0 +1,32 @@
+---
+
+- name: Download awscliv2 installer
+  unarchive:
+    src: "{{ awscli_url }}"
+    dest: "{{ awscli_temp_dir | default('/tmp') }}"
+    remote_src: yes
+    creates: "{{ awscli_temp_dir | default('/tmp') }}/aws"
+    mode: 0755
+
+- name: Run the installer for root.
+  command:
+  args:
+    cmd: "{{ awscli_temp_dir | default('/tmp') }}/aws/install --update -i {{ awscli_install_src_dir | default('/usr/local/aws-cli') }} -b {{ awscli_install_bin_dir | default('/usr/local/bin') }}"
+    creates: /usr/local/bin/aws
+  become : true
+  when: not awscli_user_install
+  register: aws_install
+
+- name: Run the installer for user.
+  command:
+  args:
+    cmd: "{{ awscli_temp_dir | default('/tmp') }}/aws/install --update -i {{ awscli_install_src_dir | default('/usr/local/aws-cli') }} -b {{ awscli_install_bin_dir | default('/usr/local/bin') }}"
+    creates: /usr/local/bin/aws
+  become : false
+  when: awscli_user_install
+  register: aws_install
+
+- name: "Show installer output"
+  debug:
+    var: aws_install
+    verbosity: 2

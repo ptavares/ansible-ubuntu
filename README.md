@@ -70,13 +70,13 @@ All ansible playbooks calls are available from a Makefile target :
  / _` | ' \(_-< | '_ \ / -_)___| || | '_ \ || | ' \  _| || |
  \__,_|_||_/__/_|_.__/_\___|    \_,_|_.__/\_,_|_||_\__|\_,_|
 =============================================================
-Usage : 
+Usage :
         make [target] [arg1=val1] [arg2=val2]...
 
          ############## Setup ##############
 
 bootstrap:                Installs dependencies needed to run ansible playbooks
-                         
+
 install-roles:            Install ansible role dependencies
                           Usage            : make install-roles [requirements=requirement.yml] [F=1]
                           Available args   :
@@ -86,48 +86,48 @@ install-roles:            Install ansible role dependencies
          ############## Installation ##############
 
 manage-system:            Call ansible manage-system playbook
-                         
+
 vscode:                   Call ansible vscode playbook
-                         
+
 kubectl:                  Call ansible kubectl playbook
-                         
+
 docker:                   Call ansible docker playbook
-                         
+
 fonts:                    Call ansible fonts playbook
-                         
+
 gnome-shell-extension:    Call ansible gnome-shell-extension playbook
-                         
+
 vim:                      Call ansible vim playbook
-                         
+
 tmux:                     Call ansible tmux playbook
-                         
+
 zsh:                      Call ansible zsh playbook
-                         
+
 appimages:                Call ansible appimages playbook
 
          ############## Updates ##############
 
 update-zsh-config:        Call ansible zsh playbook with tags="zsh-install-compose"
-                         
+
 update-manage-system:     Call ansible manage-system playbook with tags="manage-system-update, manage-system-clean"
-                         
+
 update-docker-compose:    Call ansible docker playbook with tags="docker-install-compose"
 
          ############## Test ##############
 
 bootstrap-check:          Check that PATH and requirements are correct
-                         
+
 build-docker-image:       Build Docker images to test ansible playbooks
 
          ############## Clean ##############
 
 clean:                    Clean directory
-                         
+
 
          ############## Help ##############
 
 precommit:                run precommit on all files
-                         
+
 run-playbook:             Usage                : make run-playbook playbook=<playbook> tags=<tags> limits=<limits> args=<args>
                           Required args :
                             - playbook         : playbook to run
@@ -135,11 +135,11 @@ run-playbook:             Usage                : make run-playbook playbook=<pla
                             - tags             : Specify a list of tags for your ansible run
                             - limits           : Limit the command to a subset of hosts with ansible's limit argument
                             - args             : Add ansible understandable arguments
-                         
+
 list-playbooks:           List Playbooks
-                         
+
 help                      Show this help
-                         
+
 
 With default variables:
 -----------------------

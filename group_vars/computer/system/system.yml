@@ -67,5 +67,6 @@ system_packages_remove:
 
 system_deb_urls:
   - "https://prerelease.keybase.io/keybase_amd64.deb"
+  - "https://zoom.us/client/latest/zoom_amd64.deb"
 
 system_clean: true

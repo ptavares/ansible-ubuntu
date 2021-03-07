@@ -9,6 +9,7 @@
 
   roles:
     - { name: ptavares.ansible_role_manage_system, tags: [system, init] }
+    - { name: appimages, tags: [tools, appimages] }
     - { name: fonts, tags: [ extra, fonts ] }
     - { name: vim, tags: [tools, editor, vim] }
     - { name: tmux, tags: [tools, bash, tmux] }

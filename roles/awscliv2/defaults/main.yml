@@ -1,0 +1,6 @@
+---
+awscli_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+awscli_temp_dir: /tmp
+awscli_install_src_dir: ~/.local/share/aws-cli
+awscli_install_bin_dir: ~/.local/bin
+awscli_user_install: true

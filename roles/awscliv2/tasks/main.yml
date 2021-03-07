@@ -1,0 +1,16 @@
+---
+# tasks file for awscli
+
+# Check requirement before installation
+- include: check-requirements.yml
+  tags:
+    - awscli-all
+    - awscli-requirements
+
+# Install binarie
+- include: install.yml
+  tags:
+    - awscli-all
+    - awscli-install
+    - awscli-update
+
