@@ -6,3 +6,4 @@ shell_extension_items:
    - {name : "System Monitor" , id: 120, shell_version: "" }
    - {name : "Dash to Dock" , id: 307, shell_version: "" }
    - {name : "Workspace Matrix" , id: 1485, shell_version: "" }
+   - {name : "Sound Output Device Chooser" , id: 906, shell_version: "" }
