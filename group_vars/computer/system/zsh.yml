@@ -19,18 +19,18 @@ oh_my_zsh_custom_plugins_info:
   - { url: "https://github.com/junegunn/fzf.git", dir_dest_name : fzf }
   - { url: "https://github.com/Treri/fzf-zsh.git", dir_dest_name: fzf-zsh }
   - { url: "https://github.com/zsh-users/zsh-autosuggestions.git", dir_dest_name: zsh-autosuggestions }
-  - { url: "https://github.com/zdharma/fast-syntax-highlighting.git", dir_dest_name: fast-syntax-highlighting }
+  - { url: "https://github.com/zdharma-continuum/fast-syntax-highlighting.git", dir_dest_name: fast-syntax-highlighting }
   - { url: "https://github.com/ptavares/zsh-custom-functions.git", dir_dest_name: zsh-custom-functions }
-  - { url: "https://github.com/ptavares/zsh-tfenv.git", dir_dest_name: zsh-tfenv }
-  - { url: "https://github.com/ptavares/zsh-tgenv.git", dir_dest_name: zsh-tgenv }
+  - { url: "https://github.com/ptavares/zsh-tfswitch.git", dir_dest_name: zsh-tfswitch }
+  - { url: "https://github.com/ptavares/zsh-tgswitch.git", dir_dest_name: zsh-tgswitch }
   - { url: "https://github.com/ptavares/zsh-pkenv.git", dir_dest_name: zsh-pkenv }
   - { url: "https://github.com/ptavares/zsh-direnv.git", dir_dest_name: zsh-direnv }
   - { url: "https://github.com/ptavares/zsh-kubectx.git", dir_dest_name: zsh-kubectx }
   - { url: "https://github.com/ptavares/zsh-sdkman.git", dir_dest_name: zsh-sdkman }
   - { url: "https://github.com/ptavares/zsh-exa.git", dir_dest_name: zsh-exa }
   - { url: "https://github.com/ptavares/zsh-z.git", dir_dest_name: zsh-z }
+  - { url: "https://github.com/ptavares/zsh-terraform.git", dir_dest_name: zsh-terraform }
   - { url: "https://github.com/ptavares/zsh-auto-update-plugins.git", dir_dest_name: zsh-auto-update-plugins }
-  - { url: "https://github.com/b4b4r07/emoji-cli.git", dir_dest_name: emoji-cli }
 
 
 oh_my_zsh_custom_plugins:
@@ -38,16 +38,16 @@ oh_my_zsh_custom_plugins:
   - zsh-autosuggestions
   - fast-syntax-highlighting
   - zsh-custom-functions
-  - zsh-tfenv
-  - zsh-tgenv
+  - zsh-tfswitch
+  - zsh-tgswitch
   - zsh-pkenv
   - zsh-direnv
   - zsh-kubectx
   - zsh-sdkman
   - zsh-exa
   - zsh-z
+  - zsh-terraform
   - zsh-auto-update-plugins
-  - emoji-cli
 
 oh_my_zsh_custom_plugins_command :
   - "$HOME/.oh-my-zsh/custom/plugins/fzf/install --all"
@@ -66,6 +66,4 @@ oh_my_zsh_custom_zsh_entries:
   - "# Tools Docker alias"
   - "# kubectl completion"
   - "if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi"
-  - "#Touchscreen alias"
-  - "alias touchscreenOn=\"/usr/bin/xinput enable 'ELAN Touchscreen'\""
-  - "alias touchscreenOff=\"/usr/bin/xinput disable 'ELAN Touchscreen' \""
+
