@@ -28,7 +28,7 @@ ARG PW=ubuntu
 RUN \
       useradd -m ${USER} --uid=${UID} && \
       echo "${USER}:${PW}" | chpasswd && \
-      adduser ${USER} sudo && \
+      usermod -aG sudo ${USER} && \
       mkdir /home/${USER}/app
 
 COPY ./scripts/00-add-local-bin-to-path.sh /etc/profile.d/
