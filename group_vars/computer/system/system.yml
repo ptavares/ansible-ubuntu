@@ -39,6 +39,7 @@ tools_packges:
   - pwgen
   - oathtool
   - shellcheck
+  - podman
 
 compress_packages:
   - zip
