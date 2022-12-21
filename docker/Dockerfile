@@ -28,7 +28,8 @@ ARG PW=ubuntu
 RUN \
       useradd -m ${USER} --uid=${UID} && \
       echo "${USER}:${PW}" | chpasswd && \
-      usermod -aG sudo ${USER} && \
+      adduser ${USER} sudo && \
+      echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
       mkdir /home/${USER}/app
 
 COPY ./scripts/00-add-local-bin-to-path.sh /etc/profile.d/
